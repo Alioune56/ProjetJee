@@ -59,4 +59,21 @@ public class TraitementUser {
 		return u;
 		
 	}
+	public void Modifier(User u) {
+		// 1.Connexion Base de donnee
+		Connexion cnx = new Connexion();
+		cnx.connect();
+		
+		// 2.Requete sql
+		String rec = "Update User set prenom='"+u.getPrenom()+"',nom='"+u.getNom()+"',email='"+u.getEmail()+"',password='"+u.getPassword()+"'"
+				+ "where id="+u.getId()+"";
+		
+		// 3.Statement
+		try {
+			cnx.st.executeUpdate(rec);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
