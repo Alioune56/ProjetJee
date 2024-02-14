@@ -59,6 +59,8 @@ public class TraitementUser {
 		return u;
 		
 	}
+	
+	// 3.Modifier un utilisateur
 	public void Modifier(User u) {
 		// 1.Connexion Base de donnee
 		Connexion cnx = new Connexion();
@@ -67,6 +69,24 @@ public class TraitementUser {
 		// 2.Requete sql
 		String rec = "Update User set prenom='"+u.getPrenom()+"',nom='"+u.getNom()+"',email='"+u.getEmail()+"',password='"+u.getPassword()+"'"
 				+ "where id="+u.getId()+"";
+		
+		// 3.Statement
+		try {
+			cnx.st.executeUpdate(rec);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//4.Supprimer un utilisateur
+	public void Supprimer(int id) {
+		// 1.Connexion Base de donnes
+		Connexion cnx = new Connexion();
+		cnx.connect();
+		
+		// 2.Requete sql
+		String rec = "delete User where id = '"+id+"'";
 		
 		// 3.Statement
 		try {
